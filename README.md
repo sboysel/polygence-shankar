@@ -1,5 +1,8 @@
 # polygence shankar
 
+Analyzing the efficacy of structural/analytical economic models (AM) and 
+machine learning (ML).
+
 ## installation
 
 ```sh
@@ -16,8 +19,8 @@
 Run from the repo directory (e.g., `polygence-shankar`)
 
 ```sh
-> python src/data.py # builds dataset
-> python src/main.py
+> python src/data.py            # builds dataset
+> python src/risk_aversion.py   # recovers risk aversion parameter
 ```
 
 ## notebooks
@@ -59,3 +62,8 @@ date,open,high,low,close,volume,Name
 2013-02-20,65.3842,65.3842,64.1142,64.1214,118891367,AAPL
 2013-02-21,63.7142,64.1671,63.2599,63.7228,111596821,AAPL
 ```
+
+## references
+
+* 
+* https://scikit-learn.org/stable/supervised_learning.html#supervised-learning

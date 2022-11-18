@@ -1,3 +1,11 @@
+"""
+src/risk_aversion.py
+
+Description: given data on returns, covariance, and asset allocation weights for
+a set of stocks, recover the coeviffcient parameterizing investor risk aversion
+according to the analytical solution of the Modern Portfolio Theory (MPT)
+problem.
+"""
 import numpy as np
 import pandas as pd
 import pathlib
@@ -16,6 +24,7 @@ STOCKS = pathlib.Path(ROOT, 'data', 'clean', 'stocks.csv')
 RETURNS = pathlib.Path(ROOT, 'data', 'clean', 'returns.csv')
 COV = pathlib.Path(ROOT, 'data', 'clean', 'covariance.csv')
 WEIGHTS = pathlib.Path(ROOT, 'data', 'clean', 'weight.csv')
+RISK_AVERSION = pathlib.Path(ROOT, 'data', 'clean', 'risk_aversion.csv')
 
 
 def main():
@@ -45,14 +54,13 @@ def main():
         """
         return np.linalg.norm(w - (0.5 * q) * invSigmaR)
 
-    # print(F(1.0))
-
     # find q
     res = minimize_scalar(F, bounds=(0.0, 100.), method='bounded')
-    # print(res)
 
+    # save result to disk
     q = res.x
-    print(q)
+    q = pf.DataFrame({'q': q})
+    q.to_csv(RISK_AVERSION, index=False)
 
 if __name__ == '__main__':
     main()
