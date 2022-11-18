@@ -59,7 +59,7 @@ def main():
 
     # save result to disk
     q = res.x
-    q = pf.DataFrame({'q': q})
+    q = pd.DataFrame({'q': [q]})
     q.to_csv(RISK_AVERSION, index=False)
 
 if __name__ == '__main__':

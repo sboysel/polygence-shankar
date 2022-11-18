@@ -21,6 +21,8 @@ Run from the repo directory (e.g., `polygence-shankar`)
 ```sh
 > python src/data.py            # builds dataset
 > python src/risk_aversion.py   # recovers risk aversion parameter
+> python src/main.py            # main script to evaluate machine learning
+                                # models
 ```
 
 ## notebooks
