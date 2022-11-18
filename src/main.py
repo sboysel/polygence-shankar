@@ -41,25 +41,43 @@ def main():
     """
     linear regression
     """
-    n = len(y)
+    n = len(w)
     y = w
     X = np.concatenate((Sigma, R.reshape((-1, 1))), axis=1)
-    
+   
+    # 90% test training split
+    n90 = int(n * 0.9)
+    X_train, y_train = X[:n90,], y[:n90]
+    X_test, y_test = X[n90:,], y[n90:]
+
     # baseline model: w = g(Sigma, R)
     reg = linear_model.LinearRegression()
-    reg.fit(X, y)
+    reg.fit(X_train, y_train)
 
     # evaluate fit
-    print("Baseline linear regression (R squared): ", reg.score(X, y))
+    print("Baseline linear regression (R squared): ", reg.score(X_test, y_test))
 
     """
     LASSO regression
     """
     reg = linear_model.Lasso(alpha=0.1)
-    reg.fit(X, y)
+    reg.fit(X_train, y_train)
 
     # evaluate fit
-    print("Lasso regression, alpha=0.1 (R squared): ", reg.score(X, y))
+    print("Lasso regression, alpha=0.1 (R squared): ", reg.score(X_test, y_test))
+
+    reg = linear_model.Lasso(alpha=0.2)
+    reg.fit(X_train, y_train)
+
+    # evaluate fit
+    print("Lasso regression, alpha=0.2 (R squared): ", reg.score(X_test, y_test))
+
+    reg = linear_model.Lasso(alpha=0.5)
+    reg.fit(X_train, y_train)
+
+    # evaluate fit
+    print("Lasso regression, alpha=0.5 (R squared): ", reg.score(X_test, y_test))
+
 
 
 if __name__ == '__main__':
