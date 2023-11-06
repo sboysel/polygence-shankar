@@ -43,7 +43,7 @@ def main():
     """
     n = len(w)
     y = w
-    X = np.concatenate((Sigma, R.reshape((-1, 1))), axis=1)
+    X = np.concatenate((R.reshape((-1, 1)), Sigma), axis=1)
    
     # 90% test training split
     n90 = int(n * 0.9)
